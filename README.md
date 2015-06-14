@@ -1,14 +1,15 @@
-[![Build Status](https://travis-ci.org/orwell-int/robots.svg?branch=master)](https://travis-ci.org/orwell-int/robots) [![Stories in Ready](https://badge.waffle.io/orwell-int/robots.png?label=ready&title=Ready)](https://waffle.io/orwell-int/robots) [![Coverage Status](https://img.shields.io/coveralls/orwell-int/robots.svg)](https://coveralls.io/r/orwell-int/robots)
-robots
+[![Build Status](https://travis-ci.org/orwell-int/rfid-scanner.svg?branch=master)](https://travis-ci.org/orwell-int/rfid-scanner) [![Stories in Ready](https://badge.waffle.io/orwell-int/robots.png?label=ready&title=Ready)](https://waffle.io/orwell-int/robots) [![Coverage Status](https://img.shields.io/coveralls/orwell-int/rfid-scanner.svg)](https://coveralls.io/r/orwell-int/rfid-scanner)
+rfid scanner
 ===============
 
-This is the code running one the NXT robots themselves.
+This is a stand alone code running on a NXT robot. It register all RFID values read by a RFID sensor and put them in a file.
+Use of a leJOS binary like nxjbrowser on a PC make it possible to download the file to then process the data.
 
 Checkout the code
 -----------------
 Get the sources
 ```
-git clone git@github.com:orwell-int/robots.git
+git clone git@github.com:orwell-int/rfid-scanner.git
 ```
 
 Get the submodules
@@ -20,7 +21,7 @@ local setup for coveralls
 -------------------------
 Run with maven
 --------------
-Prerequiste: have jdk-7+ installed on your machine
+Prerequisite: have jdk-7+ installed on your machine
 ```
 javac -version
 >javac 1.7.xxx
@@ -41,7 +42,7 @@ tar -xvf leJOS_NXJ_0.9.1beta-3.tar.gz
 export NXJ_HOME=leJOS_NXJ_0.9.1beta-3
 ```
 
-Run maven install, specifing the name of your NXT device on which you want to run the program
+Run maven install, providing the name of your NXT device on which you want to run the program
 ```
 mvn validate
 mvn clean install -Drobotname=YourRobotNameHere
