@@ -15,6 +15,8 @@ import java.io.IOException;
  * Created by parapampa on 14/06/15.
  */
 public class Scanner {
+    private static final String RFID_EMPTY_VALUE = "0";
+    private static final String VALUE_SEPARATOR = " ";
     private RFIDSensor rfidSensor;
     private static String FILENAME = "rfidlog.dat";
 
@@ -40,7 +42,7 @@ public class Scanner {
         FileOutputStream fileOutputStream = createFileOutputStream();
         DataOutputStream dataOut = new DataOutputStream(fileOutputStream);
 
-        Sound.beep();
+        Sound.beepSequenceUp();
         String rfidValueCurrent;
 
         while (!Button.ESCAPE.isDown()) {
@@ -51,11 +53,15 @@ public class Scanner {
             LCD.drawString(rfidValueCurrent, 0, 4, false);
             LCD.drawString(Integer.toString(rfidSensor.getStatus()), 0, 5, false);
 
-            try {
-                dataOut.writeBytes(rfidValueCurrent);
-            } catch (IOException e) {
-                System.err.println("Failed to write to output stream");
-                Sound.buzz();
+            if (!rfidValueCurrent.equals(RFID_EMPTY_VALUE)) {
+                try {
+                    dataOut.writeBytes(rfidValueCurrent);
+                    dataOut.writeBytes(VALUE_SEPARATOR);
+                    Sound.beep();
+                } catch (IOException e) {
+                    System.err.println("Failed to write to output stream");
+                    Sound.buzz();
+                }
             }
         }
         try {
